@@ -1,0 +1,37 @@
+<h1>Snack List</h1>
+<div class="row col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">Controls</div>
+    <div class="panel-body">
+      <form class="form-inline" role="form">
+        <div class="input-group" ng-controller="FireBaseLoginCtrl">
+          <input type="text" class="form-control" placeholder="Snack Name" ng-model="snackName" required ng-disabled="!loginObj.user">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="addSnack(snackName)" required>Request</button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div class="panel-body">
+      <form role="form">
+        <div class="form-group text-left">
+          <label for="snackSearchField">Search Requests</label>
+          <input type="search" ng-model="snackSearch.snackName" id="snackSearchField" class="form-control" placeholder="Search By Snack Name" disabled>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">Snack List</div>
+    <div class="panel-body">
+      <ul class="list-group" ng-repeat="snack in snackList | filter:{snack.snackName : (snackSearchField)}:strict">
+        <li class="list-group-item text-left">             
+          {{snack.snackName}}
+        </li>  
+      </ul>
+    </div>
+  </div>
+</div>
