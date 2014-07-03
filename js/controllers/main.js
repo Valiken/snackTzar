@@ -10,19 +10,17 @@
 angular.module('snackTzarApp')
   .controller('MainCtrl', ["$scope", "FireBaseServ", function ($scope, FireBaseServ) {
     $scope.snackList = FireBaseServ;
-
+    console.log($scope.snackList);
     $scope.addSnack = function (sn) {
       var name =  sn;
-
       if (name != null) {
         console.log(name);
         $scope.snackList.$add({reqFulfilled: "no", snackName: name});
+        $scope.snack = '';
       }
       else {
         console.log("no snack name was entered");
       }
-
-      $scope.snack = "";
     }
 
     $scope.updateSnack = function (sn) {
