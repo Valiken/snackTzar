@@ -1,24 +1,23 @@
 <!DOCTYPE html >
 <html lang="en">
   <head>
-
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    
+
     <link href="css/lib/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/barcoders-bootstrap.css" rel="stylesheet"/>
-    <script type="text/javascript"> 
-      <!-- 
-        (function() { 
-          if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) { 
-            var msViewportStyle = document.createElement("style"); 
-            msViewportStyle.appendChild( 
-              document.createTextNode("@-ms-viewport{width:auto!important}") 
-            ); 
-            document.getElementsByTagName("head")[0].appendChild(msViewportStyle); 
-          } 
-        })(); 
-      //--> 
+    <script>
+      <!--
+        (function() {
+          if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(
+              document.createTextNode("@-ms-viewport{width:auto!important}")
+            );
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+          }
+        })();
+      //-->
     </script>
 
     <!--[if lt IE 9]>
@@ -26,7 +25,7 @@
     <![endif]-->
 
     <title>Snack Tzar</title>
-  
+
   </head>
   <body ng-app="snackTzarApp">
     <div role="navigation" class="navbar navbar-inverse navbar-fixed-top" ng-controller="FireBaseLoginCtrl">
@@ -61,13 +60,16 @@
       </div>
     </div>
 
+    <!--Firebase Authentication and Plugins-->
     <script src='js/lib/firebase.js'></script>
     <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js'></script>
-    
+
+    <!--Libraries-->
     <script src="js/lib/jquery.min.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="js/lib/angular.min.js"></script>
-    
+
+    <!--More Libraries-->
     <script src="js/lib/angular-resource.min.js"></script>
     <script src="js/lib/angular-cookies.min.js"></script>
     <script src="js/lib/angular-sanitize.min.js"></script>
@@ -76,9 +78,20 @@
     <script src="js/lib/angular-route.min.js"></script>
     <script src='js/lib/angularfire.min.js'></script>
 
+    <!--Main application-->
     <script src="js/app.js"></script>
-    
+
+      <!--Controllers-->
     <script src="js/controllers/main.js"></script>
     <script src="js/controllers/about.js"></script>
+
+    <!--Minimized Menu Closing Fix-->
+    <script>
+      $(document).on('click','.navbar-collapse.in',function(e) {
+          if( $(e.target).is('a') ) {
+              $(this).collapse('hide');
+          }
+      });
+    </script>
   </body>
 </html>

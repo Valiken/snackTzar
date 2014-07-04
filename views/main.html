@@ -2,18 +2,18 @@
 <div class="row col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
   <div class="panel panel-default">
     <div class="panel-heading">Controls</div>
-    <div class="panel-body">
-      <form>
-        <div class="input-group" ng-controller="FireBaseLoginCtrl" ng-controller="MainCtrl">
-          <input type="text" class="form-control" placeholder="Snack Name" ng-model="snack" required ng-disabled="!loginObj.user">
+    <div class="panel-body" ng-controller="FireBaseLoginCtrl">
+      <form name="snackForm" id="snackForm" role="form" ng-submit="addSnack($parent.snack, loginObj.user); reset()">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Snack Name" ng-model="$parent.snack" ng-init="snack || {}" required ng-disabled="!loginObj.user" />
           <span class="input-group-btn">
-            <button class="btn btn-primary form-control" type="button" ng-click="addSnack(snack)" required>Request</button>
+            <button class="btn btn-primary form-control" type="button" ng-click="addSnack($parent.snack, loginObj.user); reset()" required>Request</button>
           </span>
         </div>
       </form>
     </div>
     <div class="panel-body">
-      <form role="form">
+      <form name="searchForm" id="searchForm" role="form">
         <div class="form-group text-left">
           <label for="snackSearchField">Search Requests</label>
           <input type="text" ng-model="snackSearch.snackName" id="snackSearchField" class="form-control" placeholder="Search By Snack Name">
