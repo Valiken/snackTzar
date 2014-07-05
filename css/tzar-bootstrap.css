@@ -1,8 +1,20 @@
 body {
-	padding-top: 25px;
-	background-image: url('../img/skulls.jpg');
+  padding-top: 25px;
+  background-image: url('../img/skulls.jpg');
 }
 .starter-template {
-	padding: 50px 15px;
-	text-align: center;
+  padding: 50px 15px;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Alegreya', sans-serif;
+}
+
+.panel {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.navbar {
+  font-family: 'Roboto', sans-serif;
 }
