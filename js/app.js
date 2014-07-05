@@ -30,9 +30,13 @@
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/contacts', {
-        templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl'
+      .when('/fulfilled', {
+        templateUrl: 'views/fulfill.html',
+        controller: 'FulfillCtrl'
+      })
+      .when('/yourReqs', {
+        templateUrl: 'views/yourReqs.html',
+        controller: 'YourReqCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -49,9 +53,14 @@
   app.controller('FireBaseLoginCtrl', ["$scope", "$firebaseSimpleLogin", function ($scope, $firebaseSimpleLogin) {
     var auth = new Firebase("https://glaring-fire-6519.firebaseIO.com");
     $scope.loginObj = $firebaseSimpleLogin(auth, function(error, user) {
-      if (!error) { 
+      if (!error) {
         //success!
       }
     });
-  }]);
+  }])
+  .controller('HeaderCtrl', ["$scope", "$location", function($scope, $location) {
+    $scope.isActive = function (viewLocation) {
+      return viewLocation === $location.path();
+    };
+  }])
 

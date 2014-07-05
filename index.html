@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
     <link href="css/lib/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/barcoders-bootstrap.css" rel="stylesheet"/>
+    <link href="css/tzar-bootstrap.css" rel="stylesheet"/>
     <script>
       <!--
         (function() {
@@ -40,10 +40,11 @@
           <a ng-href="#" class="navbar-brand">Snack Tzar</a>
         </div>
         <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a ng-href="#">Home</a></li>
-            <li><a ng-href="">Fulfilled</a></li>
-            <li><a ng-href="#/about">About</a></li>
+          <ul class="nav navbar-nav" ng-controller="HeaderCtrl">
+            <li ng-class="{ active: isActive('/')}"><a ng-href="#">Home</a></li>
+            <li ng-class="{ active: isActive('/fulfilled')}"><a ng-href="#/fulfilled">Fulfilled</a></li>
+            <li ng-class="{ active: isActive('/yourReqs')}" ng-hide="!loginObj.user"><a ng-href="#/yourReqs">Your Requests</a></li>
+            <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a ng-hide="loginObj.user" ng-click="loginObj.$login('google')">Login</a></li>
@@ -83,8 +84,10 @@
 
       <!--Controllers-->
     <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/fulfill.js"></script>
     <script src="js/controllers/about.js"></script>
-
+    <script src="js/controllers/yourReqs.js"></script>
+    
     <!--Minimized Menu Closing Fix-->
     <script>
       $(document).on('click','.navbar-collapse.in',function(e) {

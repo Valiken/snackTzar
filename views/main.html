@@ -27,10 +27,10 @@
   <div class="panel panel-default">
     <div class="panel-heading">Snack List</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict">
+      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict | filter: {reqFulfilled: &quot;no&quot;}">
         <li class="list-group-item text-left">
-          {{snack.snackName}}
-        </li>  
+          {{snack.snackName}} <!--<small class="text-muted">requested by {{snack.userName}}</small>-->
+        </li>
       </ul>
     </div>
   </div>
