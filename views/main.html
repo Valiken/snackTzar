@@ -5,7 +5,7 @@
     <div class="panel-body" ng-controller="FireBaseLoginCtrl">
       <form name="snackForm" id="snackForm" role="form" ng-submit="addSnack($parent.snack, loginObj.user); reset()">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Snack Name" ng-model="$parent.snack" ng-init="snack || {}" required ng-disabled="!loginObj.user" />
+          <input type="text" class="form-control" placeholder="Snack Name" ng-model="$parent.snack" required ng-disabled="!loginObj.user" />
           <span class="input-group-btn">
             <button class="btn btn-primary form-control" type="button" ng-click="addSnack($parent.snack, loginObj.user); reset()" required>Request</button>
           </span>
@@ -16,7 +16,7 @@
       <form name="searchForm" id="searchForm" role="form">
         <div class="form-group text-left">
           <label for="snackSearchField">Search Requests</label>
-          <input type="text" ng-model="snackSearch.snackName" id="snackSearchField" class="form-control" placeholder="Search By Snack Name">
+          <input type="text" ng-model="snackSearch.name" id="snackSearchField" class="form-control" placeholder="Search By Snack Name">
         </div>
       </form>
     </div>
@@ -27,9 +27,11 @@
   <div class="panel panel-default">
     <div class="panel-heading">Snack List</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict | filter: {reqFulfilled: &quot;no&quot;}">
+      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict | filter: {fulfilled: false}">
         <li class="list-group-item text-left">
-          {{snack.snackName}} <!--<small class="text-muted">requested by {{snack.userName}}</small>-->
+          {{snack.name}} <!--<small class="text-muted">requested by {{snack.user}}</small>-->
+          <a ng-click="removeSnack(snack)" ng-hide="true" ng-disabled="" class ="pull-right"><i class="fa fa-times"></i></a>
+          <a ng-click="updateSnack(snack)" ng-hide="true" ng-disabled="" class ="pull-right check-mark"><i class="fa fa-check"></i></a>
         </li>
       </ul>
     </div>

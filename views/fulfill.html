@@ -6,7 +6,7 @@
       <form name="searchForm" id="searchForm" role="form">
         <div class="form-group text-left">
           <label for="reqSearchField">Search Fulfilled Requests</label>
-          <input type="text" ng-model="reqSearch.snackName" id="reqSearchField" class="form-control" placeholder="Search By Snack Name">
+          <input type="text" ng-model="reqSearch.name" id="reqSearchField" class="form-control" placeholder="Search By Snack Name">
         </div>
       </form>
     </div>
@@ -17,10 +17,10 @@
   <div class="panel panel-default">
     <div class="panel-heading">Fulfilled Requests</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {reqFulfilled: &quot;yes&quot;}">
+      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: true}">
         <li class="list-group-item text-left">
-          {{snack.snackName}}
-        </li>  
+          {{snack.name}}
+        </li>
       </ul>
     </div>
   </div>

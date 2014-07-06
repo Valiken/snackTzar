@@ -2,10 +2,10 @@
   <div class="panel panel-default">
     <div class="panel-heading">Open Requests</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {reqFulfilled: &quot;no&quot;} | filter: {userName: loginObj.user}">
+      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: false} | filter: {userName: loginObj.user}">
         <li class="list-group-item text-left">
-          {{snack.snackName}}
-        </li>  
+          {{snack.name}}
+        </li>
       </ul>
     </div>
   </div>
@@ -15,9 +15,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">Fulfilled Requests</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {reqFulfilled: &quot;yes&quot;}  | filter: {userName: loginObj.user}">
+      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: true} | filter: {userName: loginObj.user}">
         <li class="list-group-item text-left">
-          {{snack.snackName}}
+          {{snack.name}}
         </li>
       </ul>
     </div>

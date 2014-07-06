@@ -49,7 +49,7 @@
 
     return ref;
   }]);
-  
+
   app.controller('FireBaseLoginCtrl', ["$scope", "$firebaseSimpleLogin", function ($scope, $firebaseSimpleLogin) {
     var auth = new Firebase("https://glaring-fire-6519.firebaseIO.com");
     $scope.loginObj = $firebaseSimpleLogin(auth, function(error, user) {
@@ -62,5 +62,4 @@
     $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
     };
-  }])
-
+  }]);
