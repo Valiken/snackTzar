@@ -53,9 +53,6 @@
   app.controller('FireBaseLoginCtrl', ["$scope", "$firebaseSimpleLogin", function ($scope, $firebaseSimpleLogin) {
     var auth = new Firebase("https://glaring-fire-6519.firebaseIO.com");
     $scope.loginObj = $firebaseSimpleLogin(auth, function(error, user) {
-      if (!error) {
-        //success!
-      }
     });
   }])
   .controller('HeaderCtrl', ["$scope", "$location", function($scope, $location) {

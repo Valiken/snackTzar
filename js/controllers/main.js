@@ -11,15 +11,14 @@
 angular.module('snackTzarApp')
   .controller('MainCtrl', ["$scope", "FireBaseServ", function ($scope, FireBaseServ) {
     $scope.snackList = FireBaseServ;
-    console.log($scope.snackList);
+    
     $scope.addSnack = function (sn, usr) {
-      var usr = usr.displayName;
-      if (name != null) {
-        $scope.snackList.$add({fulfilled: false, name: sn, user: usr});
+
+      if (sn != null || sn != undefined && sn.length > 0) {
+        console.log(sn.length);
+        $scope.snackList.$add({fulfilled: false, name: sn, user: usr.displayName});
       }
-      else {
-        console.log("no snack name was entered");
-      }
+
     };
     
     $scope.reset = function () {
@@ -27,7 +26,6 @@ angular.module('snackTzarApp')
     };
     
     $scope.updateSnack = function (snk) {
-      console.log(snk.$id);
       if (snk != null) {
         $scope.snackList.$child(snk.$id).$set({fulfilled: true, name: snk.name, user: snk.user});
       }
@@ -40,10 +38,13 @@ angular.module('snackTzarApp')
     };
     
     $scope.isAdmin = function (usr) {
-      if (usr == "brian berg" || usr == "billy kern") {
-        return false //false to show the button
-      }else {
-        return true //true to hide it
+      if (usr == undefined || usr == null) {
+        return true; //true to hide the buttons
+      } else if (usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com" || usr == "billy kern") {
+        return false; //false to show the buttons
+      }
+      else {
+        return true; //true to hide the buttons
       }
     };
   }
