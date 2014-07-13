@@ -60,3 +60,24 @@
       return viewLocation === $location.path();
     };
   }]);
+
+app.filter('userFilter', function() {
+  return function(items, usr) {
+    console.log(usr);
+    var filtered = [];
+    
+    for (var i = 0; i < items.length; i++ ) {
+      var item = items[i];
+      
+      if (item.user === usr) {
+        filtered.push(item);
+      }
+    }
+    
+    return filtered;
+  };
+});
+
+app.config(['$compileProvider', function($compileProvider) {
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|ms-appx):/);
+}]);

@@ -2,7 +2,7 @@
 <div class="row col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
   <div class="panel panel-default">
     <div class="panel-heading">Controls</div>
-    <div class="panel-body" ng-controller="FireBaseLoginCtrl">
+    <div class="panel-body" >
       <form name="snackForm" id="snackForm" role="form" ng-submit="addSnack($parent.snack, loginObj.user); reset()">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Snack Name" ng-model="$parent.snack" required ng-disabled="!loginObj.user" />
@@ -28,8 +28,8 @@
     <div class="panel-heading">Snack List</div>
     <div class="panel-body">
       <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict | filter: {fulfilled: false}">
-        <li class="list-group-item text-left" ng-controller="FireBaseLoginCtrl">
-          {{snack.name}} <!--<small class="text-muted">requested by {{snack.user}}</small>-->
+        <li class="list-group-item text-left" >
+          {{snack.name}} <small class="text-muted">requested by {{snack.user}}</small>
           <a ng-click="removeSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-right"><i class="fa fa-times"></i></a>
           <a ng-click="updateSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-right check-mark"><i class="fa fa-check"></i></a>
         </li>

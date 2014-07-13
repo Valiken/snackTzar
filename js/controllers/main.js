@@ -40,7 +40,7 @@ angular.module('snackTzarApp')
     $scope.isAdmin = function (usr) {
       if (usr == undefined || usr == null) {
         return true; //true to hide the buttons
-      } else if (usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com" || usr == "billy kern") {
+      } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
         return false; //false to show the buttons
       }
       else {
