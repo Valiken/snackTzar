@@ -19,7 +19,6 @@ angular.module('snackTzarApp')
         console.log(sn.length);
         $scope.snackList.$add({fulfilled: false, name: sn, user: usr.displayName, reqDate: n});
       }
-
     };
     
     $scope.reset = function () {
@@ -36,17 +35,6 @@ angular.module('snackTzarApp')
     $scope.removeSnack = function (snk) {
       if (snk != null) {
         $scope.snackList.$child(snk.$id).$remove();
-      }
-    };
-    
-    $scope.isAdmin = function (usr) {
-      if (usr == undefined || usr == null) {
-        return true; //true to hide the buttons
-      } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
-        return false; //false to show the buttons
-      }
-      else {
-        return true; //true to hide the buttons
       }
     };
   }
