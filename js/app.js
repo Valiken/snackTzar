@@ -38,6 +38,10 @@
         templateUrl: 'views/yourReqs.html',
         controller: 'YourReqCtrl'
       })
+      .when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'adminCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

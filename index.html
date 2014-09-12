@@ -48,6 +48,7 @@
             <li ng-class="{ active: isActive('/fulfilled')}"><a ng-href="#/fulfilled">Fulfilled</a></li>
             <li ng-class="{ active: isActive('/yourReqs')}" ng-hide="!loginObj.user"><a ng-href="#/yourReqs">Your Requests</a></li>
             <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
+            <li ng-click="{ active: isActive('/admin')}"><a ng-hide="isAdmin(loginObj.user)">Admin Console</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a ng-hide="loginObj.user" ng-click="loginObj.$login('google')">Login</a></li>

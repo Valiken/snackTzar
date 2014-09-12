@@ -29,7 +29,7 @@
     <div class="panel-body">
       <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict | filter: {fulfilled: false}">
         <li class="list-group-item text-left" >
-          {{snack.name}} <small class="text-muted">requested by {{snack.user}}</small>
+          {{snack.name}} <small class="text-muted">requested on {{snack.reqDate}}</small>
           <a ng-click="removeSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-right"><i class="fa fa-times"></i></a>
           <a ng-click="updateSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-right check-mark"><i class="fa fa-check"></i></a>
         </li>
