@@ -12,7 +12,7 @@ angular.module('snackTzarApp')
   .controller('MainCtrl', ["$scope", "FireBaseServ", function ($scope, FireBaseServ) {
     var d = new Date();
     $scope.snackList = FireBaseServ;
-    
+
     $scope.addSnack = function (sn, usr) {
       var n = d.toDateString();
       if (sn != null || sn != undefined && sn.length > 0) {
@@ -20,11 +20,11 @@ angular.module('snackTzarApp')
         $scope.snackList.$add({fulfilled: false, name: sn, user: usr.displayName, reqDate: n});
       }
     };
-    
+
     $scope.reset = function () {
       $scope.snack = "";
     };
-    
+
     $scope.updateSnack = function (snk) {
       if (snk != null) {
         var n = d.toDateString();

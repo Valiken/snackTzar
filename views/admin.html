@@ -1,8 +1,10 @@
 <h1>Admin Console</h1>
 
-<div class="row col-mid-12">
+<div class="row col-mid-12" ng-hide="isAdmin()">
   <div class="panel panel-default">
-    <div class="panel-heading">Controls</div>
+    <div class="panel-heading">
+      Controls
+    </div>
     <div class="panel-body col-mid-6">
       <div class="panel panel-default">
         <div class="panel panel-heading">
@@ -10,6 +12,10 @@
         </div>
         <div class="panel panel-body">
           This page is currently under construction. Please poke around a bit, but be warned that it is still very rough around the edges.
+          Features that are currently being worked on for the admin console page:
+          Admin only buttons that can purge data, bring up a full item list, and much more!
+          Ability to lock the list.
+          Many more things to come!
         </div>
       </div>
     </div>
@@ -19,10 +25,15 @@
           Expermamental Controls
         </div>
         <div class="panel panel-body">
-          <button type="button" class="btn btn-warning">List Lock</button>
-          <button type="button" class="btn btn-danger">Purge Data</button>
+          <button type="button" class="btn btn-warning" ng-hide="checkLock()" ng-click="lock()">Lock List</button>
+          <button type="button" class="btn btn-primary" ng-hide="!checkLock()" ng-click="unlock()">Unlock List</button>
+          <button type="button" class="btn btn-danger"  ng-hide="isAdmin()">Purge Data</button>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="row col-mid-12" ng-hide="!isAdmin()">
+  BE GONE FROM THIS PLACE
 </div>

@@ -10,5 +10,4 @@
 angular.module('snackTzarApp')
   .controller('FulfillCtrl', ["$scope", "FireBaseServ", function ($scope, FireBaseServ) {
     $scope.snackList = FireBaseServ;
-    
 }]);
