@@ -26,6 +26,10 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
+    .when('/cart', {
+      templateUrl: 'views/cart.html',
+      controller: 'CartCtrl'
+    })
     .when('/about', {
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl'
@@ -55,6 +59,11 @@ app.factory('FireBaseServ', ["$firebase", function ($firebase) {
 .factory('FireBaseServLock', ["$firebase", function ($firebase) {
   var URL = "https://glaring-fire-6519.firebaseIO.com";
   var ref = $firebase(new Firebase(URL + "/sysLock"));
+  return ref;
+}])
+.factory('FireBaseServCart', ["$firebase", function ($firebase) {
+  var URL = "https://glaring-fire-6519.firebaseIO.com";
+  var ref = $firebase(new Firebase(URL + "/cart"));
   return ref;
 }]);
 

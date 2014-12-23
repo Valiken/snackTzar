@@ -5,7 +5,7 @@
     <div class="panel-body" ng-controller="AdminCtrl">
       <form name="snackForm" id="snackForm" role="form" ng-submit="addSnack($parent.snack, loginObj.user); reset()">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Snack Name" ng-model="$parent.snack" required ng-disabled="!loginObj.user || checkLock()" />
+          <input type="text" class="form-control" maxlength="50" placeholder="Snack Name" ng-model="$parent.snack" required ng-disabled="!loginObj.user || checkLock()"/>
           <span class="input-group-btn">
             <button class="btn btn-primary form-control" type="button" ng-click="addSnack($parent.snack, loginObj.user); reset()" required>Request</button>
           </span>
@@ -27,11 +27,34 @@
   <div class="panel panel-default">
     <div class="panel-heading">Snack List</div>
     <div class="panel-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <button class="btn btn-primary" type="button" ng-click="addToCart(loginObj.user)">Add to Shopping Cart</button>
+        </li>
+      </ul>
       <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict | filter: {fulfilled: false}">
         <li class="list-group-item text-left" >
-          {{snack.name}} <small class="text-muted no-print">requested on {{snack.reqDate}}</small>
-          <a ng-click="removeSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-right no-print"><i class="fa fa-times"></i></a>
-          <a ng-click="updateSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-right check-mark no-print"><i class="fa fa-check"></i></a>
+          <table class="table table-bordered">
+            <tr>
+              <td>
+                {{snack.name}}
+              </td>
+              <td>
+                <small class="text-muted no-print" ng-hide="false">requested on:<br \> {{snack.reqDate}}</small>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button ng-click="updateSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-left check-mark btn btn-success">Fufill Request <i class="fa fa-check"></i></button>
+              </td>
+              <td>
+                <button ng-click="removeSnack(snack)" ng-hide="isAdmin(loginObj.user)" class ="pull-right btn btn-warning">Deny Request <i class="fa fa-times"></i></button>
+              </td>
+            </tr>
+          </table>
+           
+          
+          
         </li>
       </ul>
     </div>

@@ -37,5 +37,20 @@ angular.module('snackTzarApp')
         $scope.snackList.$child(snk.$id).$remove();
       }
     };
+
+    $scope.addToCart = function (usr) {
+      
+    };
+
+    $scope.isAdmin = function (usr) {
+      if (usr == undefined || usr == null) {
+        return true; //true to hide the buttons
+      } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr.displayName == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
+        return false; //false to show the buttons
+      }
+      else {
+        return true; //true to hide the buttons
+      }
+    };
   }
 ]);

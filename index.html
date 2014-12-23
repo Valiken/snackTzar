@@ -45,6 +45,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav" ng-controller="HeaderCtrl">
             <li ng-class="{ active: isActive('/')}"><a ng-href="#">Home</a></li>
+            <li ng-class="{ active: isActive('/cart')}" ng-hide="!loginObj.user"><a ng-href="#/cart">Shopping Cart</a></li>
             <li ng-class="{ active: isActive('/fulfilled')}"><a ng-href="#/fulfilled">Fulfilled</a></li>
             <li ng-class="{ active: isActive('/yourReqs')}" ng-hide="!loginObj.user"><a ng-href="#/yourReqs">Your Requests</a></li>
             <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
@@ -88,6 +89,7 @@
 
     <!--Controllers-->
     <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/cart.js"></script>
     <script src="js/controllers/fulfill.js"></script>
     <script src="js/controllers/about.js"></script>
     <script src="js/controllers/yourReqs.js"></script>
