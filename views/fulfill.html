@@ -19,7 +19,7 @@
     <div class="panel-body">
       <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: true}">
         <li class="list-group-item text-left">
-          {{snack.name}} <a ng-href="addSnack(snack, loginObj.user)" ng-show="loginObj.user" class="pull-right">Request</a>
+          {{snack.name}} <a ng-href="addSnack(snack, loginObj.user)" ng-hide="true" class="pull-right">Request</a>
         </li>
       </ul>
     </div>

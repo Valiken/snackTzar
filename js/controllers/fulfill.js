@@ -12,11 +12,11 @@ angular.module('snackTzarApp')
     var d = new Date();
     $scope.snackList = FireBaseServ;
     
-    $scope.addSnack = function (sn, usr) {
-      var n = d.toDateString();
-      if (sn != null || sn != undefined && sn.length > 0) {
-        console.log(sn.length);
-        $scope.snackList.$add({fulfilled: false, name: sn, user: usr.displayName, reqDate: n});
-      }
-    };
+    //$scope.addSnack = function (sn, usr) {
+    //  var n = d.toDateString();
+    //  if (sn != null || sn != undefined && sn.length > 0) {
+    //    console.log(sn.length);
+    //    $scope.snackList.$add({fulfilled: false, name: sn, user: usr.displayName, reqDate: n});
+    //  }
+    //};
 }]);

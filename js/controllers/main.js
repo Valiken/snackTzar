@@ -9,26 +9,38 @@
  */
 
 angular.module('snackTzarApp')
-  .controller('MainCtrl', ["$scope", "FireBaseServ", function ($scope, FireBaseServ) {
+  .controller('MainCtrl', ["$scope", "FireBaseServ", "FireBaseServCart", function ($scope, FireBaseServ, FireBaseServCart) {
     var d = new Date();
     $scope.snackList = FireBaseServ;
+    $scope.shoppingCart = FireBaseServCart;
+    
+    $scope.stores = [
+      {name: 'Costco'},
+      {name: 'Trader Joes'},
+      {name: 'CVS'},
+      {name: 'Raplhs'}
+      // and so on
+    ];
 
-    $scope.addSnack = function (sn, usr) {
+    $scope.addSnack = function (sn, usr, str) {
       var n = d.toDateString();
       if (sn != null || sn != undefined && sn.length > 0) {
-        console.log(sn.length);
-        $scope.snackList.$add({fulfilled: false, name: sn, user: usr.displayName, reqDate: n});
+        if (str == undefined)
+        {
+          str = "none"
+        }
+        $scope.snackList.$add({fulfilled: false, name: sn, user: usr.displayName, store: str, reqDate: n});
       }
     };
 
     $scope.reset = function () {
-      $scope.snack = "";
+      $scope.snack = null;
     };
 
     $scope.updateSnack = function (snk) {
       if (snk != null) {
         var n = d.toDateString();
-        $scope.snackList.$child(snk.$id).$set({fulfilled: true, name: snk.name, user: snk.user, fulFillDate: n});
+        $scope.snackList.$child(snk.$id).$set({fulfilled: true, name: snk.name, user: snk.user, store: snk.store, fulFillDate: n});
       }
     };
 
@@ -39,7 +51,14 @@ angular.module('snackTzarApp')
     };
 
     $scope.addToCart = function (usr) {
-      
+      if ($scope.shoppingCart.$child(usr.displayName) != null) {
+        $scope.shoppingCart.$child(usr.displayName).$remove();
+      }
+      angular.forEach($scope.snackList, function(snack) {
+        if (snack.fulfilled == false) {
+          $scope.shoppingCart.$child(usr.displayName).$add({snack: snack.name, found: false});
+        }
+      })
     };
 
     $scope.isAdmin = function (usr) {
@@ -47,8 +66,7 @@ angular.module('snackTzarApp')
         return true; //true to hide the buttons
       } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr.displayName == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
         return false; //false to show the buttons
-      }
-      else {
+      } else {
         return true; //true to hide the buttons
       }
     };
