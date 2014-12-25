@@ -10,7 +10,6 @@
 angular.module('snackTzarApp')
   .controller('CartCtrl', ["$scope", "FireBaseServ", "FireBaseServCart", function ($scope, FireBaseServ, FireBaseServCart) {
     $scope.shoppingCart = FireBaseServCart;
-    $scope.yourCart = function (usr) {
-      
-    };
+    
+    console.log($scope.shoppingCart);
 }]);

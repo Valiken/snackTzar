@@ -3,6 +3,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Controls</div>
     <div class="panel-body" ng-controller="AdminCtrl">
+      
       <form name="snackForm" id="snackForm" role="form" ng-submit="addSnack($parent.snack, loginObj.user, store.name); reset()">
         <div class="form-group has-feedback ">
           <div class="text-left">
@@ -26,14 +27,17 @@
           </span>
         </div>
       </form>
+    
     </div>
     <div class="panel-body">
+      
       <form name="searchForm" id="searchForm" role="form">
         <div class="form-group text-left">
           <label for="snackSearchField">Search Requests</label>
           <input type="text" ng-model="snackSearch.name" id="snackSearchField" class="form-control" placeholder="Search By Snack Name">
         </div>
       </form>
+      
     </div>
   </div>
 </div>
@@ -42,11 +46,13 @@
   <div class="panel panel-default">
     <div class="panel-heading">Snack List</div>
     <div class="panel-body">
+      
       <ul class="list-group">
         <li class="list-group-item">
           <button class="btn btn-primary btn-block" type="button" ng-disabled="!loginObj.user" ng-click="addToCart(loginObj.user)">Add to Shopping Cart</button>
         </li>
       </ul>
+      
       <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:snackSearch:strict | filter: {fulfilled: false}">
         <li class="list-group-item text-left" >
           <table class="table table-bordered">
@@ -57,7 +63,7 @@
             </tr>
             <tr>
               <td>
-                requested on:
+                Requested on:
               </td>
               <td>
                 <small class="text-muted">{{snack.reqDate}}</small>
@@ -65,7 +71,7 @@
             </tr>
             <tr>
               <td>
-                requested by:
+                Requested by:
               </td>
               <td>
                 <small class="text-muted">{{snack.user}}</small>
@@ -90,6 +96,7 @@
           </table>
         </li>
       </ul>
+      
     </div>
   </div>
 </div>

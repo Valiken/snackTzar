@@ -23,6 +23,7 @@ angular.module('snackTzarApp')
     ];
 
     $scope.addSnack = function (sn, usr, str) {
+      console.log(usr);
       var n = d.toDateString();
       if (sn != null || sn != undefined && sn.length > 0) {
         if (str == undefined)
@@ -51,12 +52,12 @@ angular.module('snackTzarApp')
     };
 
     $scope.addToCart = function (usr) {
-      if ($scope.shoppingCart.$child(usr.displayName) != null) {
-        $scope.shoppingCart.$child(usr.displayName).$remove();
-      }
+      //if ($scope.shoppingCart.$child(usr.displayName) != null) {
+      //  $scope.shoppingCart.$child(usr.displayName).$remove();
+      //}
       angular.forEach($scope.snackList, function(snack) {
         if (snack.fulfilled == false) {
-          $scope.shoppingCart.$child(usr.displayName).$add({snack: snack.name, found: false});
+          $scope.shoppingCart.$add({snack: snack.name, found: false, cartUsr: usr.displayName});
         }
       })
     };
