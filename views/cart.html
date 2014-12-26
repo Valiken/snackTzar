@@ -4,9 +4,38 @@
   <div class="panel panel-default">
     <div class="panel-heading">List</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="item in shoppingCart | orderByPriority | filter: {cartUsr: loginObj.user.displayName}">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <button type="button" class="btn btn-danger btn-block" ng-click="cartRemoveAll(loginObj.user)">Clear List</button>
+        </li>
+      </ul>
+      <ul class="list-group" ng-repeat="item in cart | orderByPriority | filter: {cartUsr: loginObj.user.displayName}">
         <li class="list-group-item text-left">
-          {{item.snack}}
+          <table class="table table-bordered">
+            <tr>
+              <td colspan="2" class="text-center">
+                {{item.snack}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Place <br />
+                in cart:
+              </td>
+              <td>
+                <button type="button" class="btn btn-default pull-right btn-block" ng-class="item.found == true && 'btn-success' || item.found == false && 'btn-default'" ng-click="cartUpdate(item)">
+                  {{toggleText}}<i ng-class="item.found == true && 'fa fa-check' || item.found == false && 'fa fa-shopping-cart'"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button type="button" class="btn btn-warning btn-block" ng-click="cartRemove(item)">
+                  Remove From List
+                </button>
+              </td>
+            </tr>
+          </table>
         </li>
       </ul>
     </div>

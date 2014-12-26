@@ -12,7 +12,7 @@ angular.module('snackTzarApp')
   .controller('MainCtrl', ["$scope", "FireBaseServ", "FireBaseServCart", function ($scope, FireBaseServ, FireBaseServCart) {
     var d = new Date();
     $scope.snackList = FireBaseServ;
-    $scope.shoppingCart = FireBaseServCart;
+    $scope.cart = FireBaseServCart;
     
     $scope.stores = [
       {name: 'Costco'},
@@ -51,25 +51,39 @@ angular.module('snackTzarApp')
       }
     };
 
-    $scope.addToCart = function (usr) {
-      //if ($scope.shoppingCart.$child(usr.displayName) != null) {
-      //  $scope.shoppingCart.$child(usr.displayName).$remove();
-      //}
-      angular.forEach($scope.snackList, function(snack) {
-        if (snack.fulfilled == false) {
-          $scope.shoppingCart.$add({snack: snack.name, found: false, cartUsr: usr.displayName});
+    $scope.removeAll = function (usr) {
+      angular.forEach($scope.cart, function(itm){
+        if (itm.cartUsr == usr.displayName) {
+           $scope.cart.$child(itm.$id).$remove();
         }
       })
-    };
+    }
 
-    $scope.isAdmin = function (usr) {
-      if (usr == undefined || usr == null) {
-        return true; //true to hide the buttons
-      } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr.displayName == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
-        return false; //false to show the buttons
-      } else {
-        return true; //true to hide the buttons
+    $scope.addToCart = function (usr) {
+      try {
+        if ($scope.cart != null) {
+          $scope.removeAll(usr);
+        }
+      } catch (e) {
+        console.log("Oops it appears as though the cart was empty" + ' ' + e);
+      } finally {
+        angular.forEach($scope.snackList, function(snk) {
+          //console.log(snack);
+          if (snk.fulfilled == false) {
+            $scope.cart.$add({snack: snk.name, found: false, cartUsr: usr.displayName});
+          }
+        })
       }
     };
+
+    //$scope.isAdmin = function (usr) {
+    //  if (usr == undefined || usr == null) {
+    //    return true; //true to hide the buttons
+    //  } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr.displayName == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
+    //    return false; //false to show the buttons
+    //  } else {
+    //   return true; //true to hide the buttons
+    //  }
+    //};
   }
 ]);

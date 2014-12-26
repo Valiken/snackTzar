@@ -65,6 +65,11 @@ app.factory('FireBaseServ', ["$firebase", function ($firebase) {
   var URL = "https://glaring-fire-6519.firebaseIO.com";
   var ref = $firebase(new Firebase(URL + "/cart"));
   return ref;
+}])
+.factory('FireBaseServAdmin', ["$firebase", function ($firebase) {
+  var URL = "https://glaring-fire-6519.firebaseIO.com";
+  var ref = $firebase(new Firebase(URL + "/adminUsr"));
+  return ref;
 }]);
 
 app.controller('FireBaseLoginCtrl', ["$scope", "$firebaseSimpleLogin", function ($scope, $firebaseSimpleLogin) {
