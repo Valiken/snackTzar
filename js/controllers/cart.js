@@ -18,9 +18,9 @@ angular.module('snackTzarApp')
     $scope.cartUpdate = function (itm) {
       console.log(itm);
       if(itm.found == true) {
-        $scope.cart.$child(itm.$id).$set({cartUsr: itm.cartUsr, found: false, snack: itm.snack});
+        $scope.cart.$child(itm.$id).$set({cartUsr: itm.cartUsr, found: false, store: itm.store, snack: itm.snack});
       } else {
-        $scope.cart.$child(itm.$id).$set({cartUsr: itm.cartUsr, found: true, snack: itm.snack});
+        $scope.cart.$child(itm.$id).$set({cartUsr: itm.cartUsr, found: true, store: itm.store, snack: itm.snack});
       }
     };
     

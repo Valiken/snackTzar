@@ -77,20 +77,34 @@ app.controller('FireBaseLoginCtrl', ["$scope", "$firebaseSimpleLogin", function 
   $scope.loginObj = $firebaseSimpleLogin(auth, function(error, user) {
   });
 }])
-.controller('HeaderCtrl', ["$scope", "$location", function($scope, $location) {
+.controller('HeaderCtrl', ["$scope", "$location", "FireBaseServAdmin", function($scope, $location, FireBaseServAdmin) {
+  
+  $scope.adminUsr = FireBaseServAdmin;
+  
   $scope.isActive = function (viewLocation) {
     return viewLocation === $location.path();
   };
 
   $scope.isAdmin = function (usr) {
-    if (usr == undefined || usr == null) {
+    if (usr != undefined || usr != null) {
+      angular.forEach($scope.adminUsr, function (admUsr) {
+        if (usr.displayName == admUsr.name && usr.email == admUsr.email) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+    } else {
       return true; //true to hide the buttons
-    } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr.displayName == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
-      return false; //false to show the buttons
     }
-    else {
-      return true; //true to hide the buttons
-    }
+    //if (usr == undefined || usr == null) {
+    //  return true;
+    //} else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr.displayName == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
+    //  return false; //false to show the buttons
+    //}
+    //else {
+    //  return true; //true to hide the buttons
+    //}
   };
 }]);
 

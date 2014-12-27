@@ -68,15 +68,26 @@ angular.module('snackTzarApp')
         console.log("Oops it appears as though the cart was empty" + ' ' + e);
       } finally {
         angular.forEach($scope.snackList, function(snk) {
-          //console.log(snack);
+          console.log(snack);
           if (snk.fulfilled == false) {
-            $scope.cart.$add({snack: snk.name, found: false, cartUsr: usr.displayName});
+            $scope.cart.$add({snack: snk.name, found: false, store: snk.store, cartUsr: usr.displayName});
           }
         })
       }
     };
 
-    //$scope.isAdmin = function (usr) {
+    $scope.isAdmin = function (usr) {
+      if (usr != undefined || usr != null) {
+        angular.forEach($scope.adminUsr, function (admUsr) {
+          if (usr.displayName == admUsr.name && usr.email == admUsr.email) {
+            return false;
+          } else {
+            return true;
+          }
+        })
+      } else {
+        return true; //true to hide the buttons
+      }
     //  if (usr == undefined || usr == null) {
     //    return true; //true to hide the buttons
     //  } else if ((usr.displayName == "brian berg" && usr.email == "brian.berg.cgi@gmail.com") || (usr.displayName == "billy k" && usr.email == "billy.kern.cgi@gmail.com")) {
@@ -84,6 +95,6 @@ angular.module('snackTzarApp')
     //  } else {
     //   return true; //true to hide the buttons
     //  }
-    //};
+    };
   }
 ]);
