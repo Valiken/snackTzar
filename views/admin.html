@@ -27,6 +27,7 @@
         <div class="panel panel-body">
           <button type="button" class="btn btn-warning" ng-hide="checkLock()" ng-click="lock()">Lock List</button>
           <button type="button" class="btn btn-primary" ng-hide="!checkLock()" ng-click="unlock()">Unlock List</button>
+          <button type="button" class="btn btn-warning" ng-click="dataFix()">One time data fix</button>
           <button type="button" class="btn btn-danger"  ng-hide="isAdmin()">Purge Data</button>
         </div>
       </div>

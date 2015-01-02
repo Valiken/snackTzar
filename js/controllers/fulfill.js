@@ -8,9 +8,9 @@
  * Controller of the snackTzarApp
  */
 angular.module('snackTzarApp')
-  .controller('FulfillCtrl', ["$scope", "FireBaseServ", function ($scope, FireBaseServ) {
+  .controller('FulfillCtrl', ["$scope", "FireBaseServFulfilled", function ($scope, FireBaseServFulfilled) {
     var d = new Date();
-    $scope.snackList = FireBaseServ;
+    $scope.fulfilledList = FireBaseServFulfilled;
     
     //$scope.addSnack = function (sn, usr) {
     //  var n = d.toDateString();

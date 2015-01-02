@@ -17,7 +17,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Fulfilled Requests</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: true}">
+      <ul class="list-group" ng-repeat="snack in fulfilledList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: true}">
         <li class="list-group-item text-left">
           {{snack.name}} <a ng-href="addSnack(snack, loginObj.user)" ng-hide="true" class="pull-right">Request</a>
         </li>

@@ -56,6 +56,16 @@ app.factory('FireBaseServ', ["$firebase", function ($firebase) {
   var ref = $firebase(new Firebase(URL + "/snackList"));
   return ref;
 }])
+.factory('FireBaseServFulfilled', ["$firebase", function ($firebase) {
+  var URL = "https://glaring-fire-6519.firebaseIO.com";
+  var ref = $firebase(new Firebase(URL + "/fulfilledList"));
+  return ref;
+}])
+.factory('FireBaseServDenied', ["$firebase", function ($firebase) {
+  var URL = "https://glaring-fire-6519.firebaseIO.com";
+  var ref = $firebase(new Firebase(URL + "/deniedList"));
+  return ref;
+}])
 .factory('FireBaseServLock', ["$firebase", function ($firebase) {
   var URL = "https://glaring-fire-6519.firebaseIO.com";
   var ref = $firebase(new Firebase(URL + "/sysLock"));

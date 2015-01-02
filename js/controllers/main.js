@@ -9,10 +9,12 @@
  */
 
 angular.module('snackTzarApp')
-  .controller('MainCtrl', ["$scope", "FireBaseServ", "FireBaseServCart", function ($scope, FireBaseServ, FireBaseServCart) {
+  .controller('MainCtrl', ["$scope", "FireBaseServ", "FireBaseServFulfilled", "FireBaseServDenied", "FireBaseServCart", function ($scope, FireBaseServ, FireBaseServFulfilled, FireBaseServDenied, FireBaseServCart) {
     var d = new Date();
     $scope.snackList = FireBaseServ;
     $scope.cart = FireBaseServCart;
+    $scope.fulfilledList = FireBaseServFulfilled;
+    $scope.deniedList = FireBaseServDenied;
     
     $scope.stores = [
       {name: 'Costco'},
@@ -41,12 +43,15 @@ angular.module('snackTzarApp')
     $scope.updateSnack = function (snk) {
       if (snk != null) {
         var n = d.toDateString();
-        $scope.snackList.$child(snk.$id).$set({fulfilled: true, name: snk.name, user: snk.user, store: snk.store, fulFillDate: n});
+        $scope.fulfilledList.$add({fulfilled: true, name: snk.name, user: snk.user, store: snk.store, fulFillDate: n});
+        $scope.snackList.$child(snk.$id).$remove();
       }
     };
 
     $scope.removeSnack = function (snk) {
       if (snk != null) {
+        var n = d.toDateString();
+        $scope.deniedList.$add({fulfilled: snk.fulfilled, name: snk.name, user: snk.user, store: snk.store, deniedDate: n});
         $scope.snackList.$child(snk.$id).$remove();
       }
     };
@@ -68,7 +73,6 @@ angular.module('snackTzarApp')
         console.log("Oops it appears as though the cart was empty" + ' ' + e);
       } finally {
         angular.forEach($scope.snackList, function(snk) {
-          console.log(snack);
           if (snk.fulfilled == false) {
             $scope.cart.$add({snack: snk.name, found: false, store: snk.store, cartUsr: usr.displayName});
           }

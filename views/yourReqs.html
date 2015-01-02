@@ -4,7 +4,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">Open Requests</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: false} | userFilter: loginObj.user.displayName">
+      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | userFilter: loginObj.user.displayName">
         <li class="list-group-item text-left">
           {{snack.name}}
         </li>
@@ -17,7 +17,20 @@
   <div class="panel panel-default">
     <div class="panel-heading">Fulfilled Requests</div>
     <div class="panel-body">
-      <ul class="list-group" ng-repeat="snack in snackList | orderByPriority | filter:reqSearch:strict | filter: {fulfilled: true} | userFilter: loginObj.user.displayName">
+      <ul class="list-group" ng-repeat="snack in fulfilledList | orderByPriority | filter:reqSearch:strict | userFilter: loginObj.user.displayName">
+        <li class="list-group-item text-left">
+          {{snack.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">Denied Requests</div>
+    <div class="panel-body">
+      <ul class="list-group" ng-repeat="snack in deniedList | orderByPriority | filter:reqSearch:strict | userFilter: loginObj.user.displayName">
         <li class="list-group-item text-left">
           {{snack.name}}
         </li>
