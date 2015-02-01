@@ -11,12 +11,8 @@
 
 var app = angular.module('snackTzarApp', [
   'firebase',
-  'ngAnimate',
-  'ngCookies',
-  'ngResource',
   'ngRoute',
-  'ngSanitize',
-  'ngTouch']);
+  'ngSanitize']);
 
 app.value("Firebase", Firebase);
 
@@ -88,9 +84,9 @@ app.controller('FireBaseLoginCtrl', ["$scope", "$firebaseSimpleLogin", function 
   });
 }])
 .controller('HeaderCtrl', ["$scope", "$location", "FireBaseServAdmin", function($scope, $location, FireBaseServAdmin) {
-  
+
   $scope.adminUsr = FireBaseServAdmin;
-  
+
   $scope.isActive = function (viewLocation) {
     return viewLocation === $location.path();
   };
