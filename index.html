@@ -49,7 +49,7 @@
             <li ng-class="{ active: isActive('/fulfilled')}"><a ng-href="#/fulfilled">Fulfilled</a></li>
             <li ng-class="{ active: isActive('/yourReqs')}" ng-hide="!loginObj.user"><a ng-href="#/yourReqs">Your Requests</a></li>
             <li ng-class="{ active: isActive('/about')}"><a ng-href="#/about">About</a></li>
-            <li ng-class="{ active: isActive('/admin')}" ng-hide="isAdmin(loginObj.user)"><a ng-href="#/admin">Admin Console</a></li>
+            <!--<li ng-class="{ active: isActive('/admin')}" ng-hide="isAdmin(loginObj.user)"><a ng-href="#/admin">Admin Console</a></li>-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a ng-hide="loginObj.user" ng-click="loginObj.$login('google')">Login</a></li>
@@ -94,7 +94,7 @@
     <script src="js/controllers/about.js"></script>
     <script src="js/controllers/yourReqs.js"></script>
     <script src="js/controllers/admin.js"></script>
-    
+
     <!--Minimized Menu Closing Fix-->
     <script>
       $(document).on('click','.navbar-collapse.in',function(e) {
@@ -108,6 +108,6 @@
       ga('create', 'UA-40300492-1', 'auto');
       ga('send', 'pageview');
     </script>
-    
+
   </body>
 </html>
